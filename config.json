@@ -1,0 +1,14 @@
+{
+    "name": "IR Remote",
+    "description": "Mục mở rộng của Yolo:Bit sử dụng IR remote",
+    "libs": [
+        "ir_receiver.py"
+    ],
+    "blocks": [
+        "definition.js"
+    ],
+    "toolbox": "toolbox.xml",
+    "languages": {
+    },
+    "poster": "poster.png"
+}
