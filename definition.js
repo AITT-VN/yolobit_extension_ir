@@ -1,18 +1,10 @@
 Blockly.Blocks["yolobit_ir_create"] = {
   init: function () {
     this.jsonInit({
-      colour: "#CC6600",
+      colour: "#BDB76B",
       tooltip: "",
-      message0: "khởi tạo cảm biến %1 tại chân %2",
+      message0: "khởi tạo cảm biến hồng ngoại tại chân %1",
       args0: [
-        {
-          "type": "field_image",
-          "src": "https://i.ibb.co/dtYR9mJ/remote.png",
-          "width": 20,
-          "height": 20,
-          "alt": "*",
-          "flipRtl": false
-        },
         {
           "type": "field_dropdown",
           "name": "pin",
@@ -109,7 +101,7 @@ Blockly.Blocks["yolobit_ir_create"] = {
 Blockly.Blocks["yolobit_ir_recv"] = {
   init: function () {
     this.jsonInit({
-      colour: "#CC6600",
+      colour: "#BDB76B",
       tooltip: "",
       message0: "%1 nút %2 trên remote được nhấn",
       args0: [
@@ -193,7 +185,7 @@ Blockly.Blocks["yolobit_ir_recv"] = {
 Blockly.Blocks["yolobit_ir_code"] = {
   init: function () {
     this.jsonInit({
-      colour: "#CC6600",
+      colour: "#BDB76B",
       tooltip: "",
       message0: "%1 đọc tín hiệu số thu được",
       args0: [
@@ -218,7 +210,7 @@ Blockly.Blocks["yolobit_ir_code"] = {
 Blockly.Blocks["yolobit_ir_raw_code"] = {
   init: function () {
     this.jsonInit({
-      colour: "#CC6600",
+      colour: "#BDB76B",
       tooltip: "",
       message0: "%1 đọc tín hiệu thu từ remote",
       args0: [
@@ -243,7 +235,7 @@ Blockly.Blocks["yolobit_ir_raw_code"] = {
 Blockly.Blocks["yolobit_ir_clear"] = {
   init: function () {
     this.jsonInit({
-      colour: "#CC6600",
+      colour: "#BDB76B",
       tooltip: "",
       message0: "%1 xóa tín hiệu đã thu được",
       args0: [
@@ -269,90 +261,16 @@ Blockly.Blocks["yolobit_ir_clear"] = {
 Blockly.Blocks["yolobit_ir_on_receive"] = {
   init: function () {
     this.jsonInit({
-      colour: "#CC6600",
-      message0: "nếu cảm biến IR %1 nhận được %2 %3 %4 từ remote",
+      colour: "#BDB76B",
+      message0: "nếu %1 nhận được %2 %3 %4 từ remote",
       args0: [
         {
-          "type": "field_dropdown",
-          "name": "pin",
-          "options": [
-            [
-              "P1",
-              "pin1"
-            ],
-            [
-              "P0",
-              "pin0"
-            ],
-            [
-              "P2",
-              "pin2"
-            ],
-            [
-              "P3",
-              "pin3"
-            ],
-            [
-              "P4",
-              "pin4"
-            ],
-            [
-              "P5",
-              "pin5"
-            ],
-            [
-              "P6",
-              "pin6"
-            ],
-            [
-              "P7",
-              "pin7"
-            ],
-            [
-              "P8",
-              "pin8"
-            ],
-            [
-              "P9",
-              "pin9"
-            ],
-            [
-              "P10",
-              "pin10"
-            ],
-            [
-              "P11",
-              "pin11"
-            ],
-            [
-              "P12",
-              "pin12"
-            ],
-            [
-              "P13",
-              "pin13"
-            ],
-            [
-              "P14",
-              "pin14"
-            ],
-            [
-              "P15",
-              "pin15"
-            ],
-            [
-              "P16",
-              "pin16"
-            ],
-            [
-              "P19",
-              "pin19"
-            ],
-            [
-              "P20",
-              "pin20"
-            ]
-          ]
+          "type": "field_image",
+          "src": "https://i.ibb.co/dtYR9mJ/remote.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*",
+          "flipRtl": false
         },
         {
           variable: "tín hiệu",
@@ -370,12 +288,15 @@ Blockly.Blocks["yolobit_ir_on_receive"] = {
       helpUrl: "",
     });
   },
+  getDeveloperVars: function() {
+    return ['ir_rx'];
+  }
 };
 
 Blockly.Blocks["yolobit_ir_remote_btn"] = {
   init: function () {
     this.jsonInit({
-      colour: "#CC6600",
+      colour: "#BDB76B",
       tooltip: "",
       message0: "nút %1",
       args0: [
@@ -442,9 +363,6 @@ Blockly.Blocks["yolobit_ir_remote_btn"] = {
       output: "Boolean",
       helpUrl: "",
     });
-  },
-  getDeveloperVars: function() {
-    return ['ir_rx'];
   }
 };
 
@@ -454,9 +372,9 @@ Blockly.Blocks["yolobit_ir_remote_btn"] = {
 Blockly.Python["yolobit_ir_create"] = function (block) {
   var pin = block.getFieldValue("pin");
   // TODO: Assemble Python into code variable.
-  Blockly.Python.definitions_['import_ir_receiver'] = 'from ir_receiver import *;';
-  var code = 'ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN));\nir_rx.start();';
-  return code;
+  Blockly.Python.definitions_['import_ir_receiver'] = 'from yolobit_ir_receiver import *;';
+  Blockly.Python.definitions_['import_ir_receiver_init'] = 'ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN));\nir_rx.start();';
+  return '';
 };
 
 Blockly.Python["yolobit_ir_recv"] = function (block) {
@@ -492,9 +410,6 @@ Blockly.Python["yolobit_ir_remote_btn"] = function (block) {
 };
 
 Blockly.Python['yolobit_ir_on_receive'] = function(block) {
-  var pin = block.getFieldValue("pin");
-  Blockly.Python.definitions_['import_ir_receiver'] = 'from ir_receiver import *';
-  Blockly.Python.definitions_['import_ir_receiver_init'] = 'ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN)); ir_rx.start();';
   var variable_message = Blockly.Python.variableDB_.getName(block.getFieldValue('message'), Blockly.Variables.NAME_TYPE);
   var statements_action = Blockly.Python.statementToCode(block, 'ACTION');
 
@@ -511,13 +426,14 @@ Blockly.Python['yolobit_ir_on_receive'] = function(block) {
   globals = globals.length ? Blockly.Python.INDENT + 'global ' + globals.join(', ') : '';
 
   var cbFunctionName = Blockly.Python.provideFunction_(
-    'on_ir_receive_callback_',
+    'on_ir_receive_callback',
     ['def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(' + variable_message + ', addr, ext):',
       globals,
       statements_action || Blockly.Python.PASS
     ]);
   
   var code = 'ir_rx.on_received(' + cbFunctionName + ')\n';
-  Blockly.Python.definitions_['on_ir_receive_callback_' + '_statement'] = code;
+  Blockly.Python.definitions_['on_ir_receive_callback' + '_statement'] = code;
+
   return '';
 };

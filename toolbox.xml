@@ -1,8 +1,8 @@
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-  <category name="IR" colour="#CC6600" icon="signal">
+  <category name="IR" colour="#BDB76B" icon="signal">
+    <block type="yolobit_ir_create" />
     <block type="yolobit_ir_on_receive"/>
     <block type="yolobit_ir_remote_btn"/>
-    <block type="yolobit_ir_create" />
     <block type="yolobit_ir_recv" />
     <block type="yolobit_ir_code" />
     <block type="yolobit_ir_raw_code" />
